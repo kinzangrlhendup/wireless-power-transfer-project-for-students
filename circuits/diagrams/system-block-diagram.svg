@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="250" viewBox="0 0 1000 250" role="img" aria-labelledby="title desc">
+  <title id="title">Wireless power-transfer system block diagram</title>
+  <desc id="desc">A 12 volt supply feeds an inverter and transmitter resonator. Magnetic coupling transfers energy to a receiver resonator, rectifier, regulator and five volt load.</desc>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#44546a"/></marker></defs>
+  <rect width="1000" height="250" fill="#ffffff"/>
+  <g font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#172033" stroke="#44546a" stroke-width="2">
+    <rect x="25" y="85" width="120" height="70" rx="8" fill="#eef3f8"/><text x="85" y="114" stroke="none">12 V DC</text><text x="85" y="137" stroke="none">supply</text>
+    <rect x="185" y="85" width="135" height="70" rx="8" fill="#eef3f8"/><text x="252" y="114" stroke="none">100 kHz</text><text x="252" y="137" stroke="none">inverter</text>
+    <rect x="360" y="85" width="145" height="70" rx="8" fill="#dceeff"/><text x="432" y="114" stroke="none">Transmitter</text><text x="432" y="137" stroke="none">resonator</text>
+    <rect x="555" y="85" width="145" height="70" rx="8" fill="#e8e2ff"/><text x="627" y="114" stroke="none">Receiver</text><text x="627" y="137" stroke="none">resonator</text>
+    <rect x="740" y="85" width="105" height="70" rx="8" fill="#eef3f8"/><text x="792" y="114" stroke="none">Rectifier</text><text x="792" y="137" stroke="none">and filter</text>
+    <rect x="885" y="85" width="90" height="70" rx="8" fill="#eef3f8"/><text x="930" y="114" stroke="none">5 V</text><text x="930" y="137" stroke="none">output</text>
+    <path d="M145 120H185M320 120H360M505 120H555M700 120H740M845 120H885" fill="none" marker-end="url(#a)"/>
+    <text x="530" y="64" stroke="none" font-size="14">magnetic coupling across air gap</text>
+  </g>
+</svg>
+

@@ -1,0 +1,8 @@
+component,manufacturer,model_file,official_source,revision_or_date,redistribution_status,sha256,status
+NE555,LTspice native library,,https://www.ti.com/lit/ds/symlink/ne555.pdf,accessed 2026-09-02,native model,,available in LTspice
+2N3904,LTspice native library,,,check exact hardware vendor,,available in LTspice
+LTC4444,Analog Devices native LTspice library,,https://www.analog.com/media/en/technical-documentation/data-sheets/4444fb.pdf,accessed 2026-09-02,native model,,available in LTspice
+IRLZ44N,Infineon Technologies,,,,check vendor licence,,not downloaded and final selection pending
+1N5819,LTspice native library,,,check exact hardware vendor,,available for initial simulation
+LT1376-5,Analog Devices native LTspice library,,https://www.analog.com/en/products/lt1376.html,accessed 2026-09-02,native model,,available in LTspice
+L7805,STMicroelectronics or exact selected vendor,,https://www.st.com/resource/en/datasheet/l78.pdf,Rev 38 February 2025,check vendor licence,,optional low-current alternative only

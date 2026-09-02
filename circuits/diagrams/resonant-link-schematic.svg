@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-labelledby="title desc">
+  <title id="title">Series-series compensated wireless power link</title>
+  <desc id="desc">A sine source drives source resistance, primary capacitor and primary coil. A magnetically coupled secondary coil drives a secondary capacitor and resistive load.</desc>
+  <rect width="1000" height="430" fill="#ffffff"/>
+  <g fill="none" stroke="#172033" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="100" cy="200" r="42"/><path d="M76 200c9-21 21-21 30 0s21 21 30 0"/>
+    <path d="M100 158V95H190M100 242v85H475M190 95h22l10-18 20 36 20-36 20 36 10-18h28M320 95h40M360 68v54M380 68v54M380 95h55"/>
+    <path d="M435 95h15c0 22 30 22 30 0c0 22 30 22 30 0c0 22 30 22 30 0c0 22 30 22 30 0h15V327H475" stroke="#1976b9"/>
+    <path d="M615 95h15c0 22 30 22 30 0c0 22 30 22 30 0c0 22 30 22 30 0c0 22 30 22 30 0h30M780 95h40M820 68v54M840 68v54M840 95h55v62" stroke="#6b54b6"/>
+    <path d="M895 157v12l-18 10 36 21-36 21 36 21-18 10v75H615V95" stroke="#6b54b6"/>
+    <path d="M588 62v184M598 62v184" stroke="#7a8391" stroke-dasharray="8 7"/>
+    <path d="M80 327h40M87 337h26M94 347h12M595 327h40M602 337h26M609 347h12"/>
+  </g>
+  <g font-family="Arial, sans-serif" fill="#172033" font-size="17" text-anchor="middle">
+    <text x="100" y="380">V1: 5 V peak, 100 kHz</text><text x="250" y="55">Rsource: 2 ohm</text><text x="370" y="48">C1: 82 nF</text><text x="500" y="48">L1: 30 uH</text>
+    <text x="593" y="280">K1 = k</text><text x="690" y="48">L2: 30 uH</text><text x="830" y="48">C2: 82 nF</text><text x="935" y="205">Rload</text><text x="935" y="227">10 ohm</text>
+    <text x="500" y="122" font-size="14">ESR 0.3 ohm</text><text x="690" y="122" font-size="14">ESR 0.3 ohm</text>
+  </g>
+</svg>
+

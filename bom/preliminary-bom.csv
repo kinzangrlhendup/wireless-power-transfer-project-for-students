@@ -1,0 +1,39 @@
+stage,reference,quantity,description,initial_value_or_part,status,selection_note
+1,V1,1,Sinusoidal source,5 V peak at 100 kHz,validated model,Limits initial model power
+1,Rsource,1,Source resistance,2 ohm,validated model,Represents source impedance and limits current
+1,C1 C2,2,Resonant capacitor,82 nF polypropylene 250 V minimum,simulation value,Physical ripple rating remains to be verified
+1,L1 L2,2,Flat spiral coil,30 microhenry target,simulation value,Measure inductance and ESR before selecting capacitors
+1,Rload,1,AC test load,10 ohm,validated model,Not an exact phone model
+2,U1,1,Oscillator,NE555,preliminary,Requires timing and duty-cycle verification
+2,R_Fuse,1,Simulated fuse resistance,0.05 ohm,schematic value,Use a real 2 A fuse in hardware rather than a resistor
+2,CIN1,1,Input bulk capacitor,470 microfarad,preliminary,Place after the fuse
+2,CIN2,1,Input bypass capacitor,100 nanofarad,preliminary,Place close to switching circuitry
+2,RA,1,NE555 timing resistor,1 kilohm,calculated value,Used with RB and CT for approximately 98.6 kHz
+2,RB,1,NE555 timing resistor,6.8 kilohm,calculated value,Used with RA and CT
+2,CT,1,NE555 timing capacitor,1 nanofarad,calculated value,Use a stable dielectric
+2,CV,1,NE555 control-pin bypass,10 nanofarad,preliminary,Reduces control-node noise
+2,QINV,1,Complementary-input inverter,2N3904,preliminary,Generates CLK_INV from CLK_100k
+2,RINV_B,1,Inverter base resistor,4.7 kilohm,preliminary,Limits NE555 output current
+2,RINV_PU,1,Inverter collector pull-up,4.7 kilohm,preliminary,Pulls CLK_INV to 12 V
+2,RINV_BE,1,Inverter base-emitter pull-down,10 kilohm,preliminary,Holds transistor off when input floats
+2,U2,1,Half-bridge gate driver,LTC4444,selected for LTspice,Two independent inputs and adaptive shoot-through protection
+2,Q1 Q2,2,N-channel MOSFET,IRLZ44N or lower-gate-charge alternative,model not assigned,Do not simulate with generic NMOS symbols
+2,Rg1 Rg2,2,Gate resistor,10 ohm,preliminary,Tune using gate waveform and ringing
+2,Rpd1 Rpd2,2,Gate pull-down resistor,10 kilohm,preliminary,Holds MOSFET off when driver is inactive
+2,Dboot,1,Bootstrap diode,1N5819,simulation selection,Verify reverse voltage and leakage in hardware
+2,Cboot,1,Bootstrap capacitor,220 nF ceramic,preliminary,Connected from BOOST to TS
+2,F1,1,Input fuse,2 A,preliminary,Does not replace bench current limit
+2,C_TX,1,Transmitter resonant capacitor,82 nanofarad,calculated value,Matched to nominal 30 microhenry coil
+2,L_TX,1,Transmitter coil,30 microhenry,simulation value,Must be 30u not 30n in LTspice
+2,R_TX,1,Transmitter winding resistance,0.3 ohm,simulation value,Replace with measured ESR
+3,C_RX,1,Receiver resonant capacitor,82 nanofarad,calculated value,Matched to nominal 30 microhenry coil
+3,L_RX,1,Receiver coil,30 microhenry,simulation value,Magnetically coupled using K1
+3,R_RX,1,Receiver winding resistance,0.3 ohm,simulation value,Replace with measured ESR
+3,D_RX1 D_RX2 D_RX3 D_RX4,4,Schottky rectifier,1N5819 simulation and SS34 or MBR340 hardware candidate,preliminary,1N5819 is not the preferred final 1 A hardware diode
+3,Cfilter,1,Receiver bulk capacitor,1000 microfarad 35 V low ESR,preliminary,Verify ripple current and no-load voltage
+3,DTVS,1,Receiver overvoltage clamp,SMAJ24A,preliminary,Clamp selection depends on measured receiver bus
+3,CfilterHF,1,Receiver high-frequency bypass,100 nanofarad,preliminary,Place across VRECT and RX_NEG
+3,Rbleed,1,Receiver discharge resistor,10 kilohm,preliminary,Discharges the receiver capacitors
+3,U3,1,Buck regulator,LT1376-5 for LTspice,preliminary,Official model available and fixed 5 V option
+3,U3_ALT,1,Optional linear regulator,L7805 low-current demonstration only,not selected,At 10 V input and 1 A it dissipates about 5 W
+3,Rdummy,1,Commissioning dummy load,5 ohm 10 W,preliminary,Use before connecting USB device

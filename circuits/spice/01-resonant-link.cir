@@ -1,0 +1,28 @@
+* Series-series resonant wireless power link
+* Stage 1 educational model: 5 V peak source, 10 ohm AC load
+
+.param F=100k
+.param K=0.10
+
+V1 in 0 AC 3.5355339 SINE(0 5 {F})
+Rsource in n1 2
+C1 n1 n2 82n
+L1 n2 0 30u Rser=0.3
+
+L2 n3 0 30u Rser=0.3
+C2 n3 out 82n
+Rload out 0 10
+
+K1 L1 L2 {K}
+
+.tran 0 2m 0 50n
+.ac lin 1601 60k 140k
+
+.meas tran Vin_rms RMS V(in) FROM 1.5m TO 2m
+.meas tran Vout_rms RMS V(out) FROM 1.5m TO 2m
+.meas tran Iprimary_rms RMS I(L1) FROM 1.5m TO 2m
+.meas tran Isecondary_rms RMS I(L2) FROM 1.5m TO 2m
+.meas tran Pload AVG V(out)*I(Rload) FROM 1.5m TO 2m
+
+.end
+
