@@ -103,3 +103,21 @@ to mains. Do not connect a phone while tuning. Resonance can produce coil and
 capacitor voltages much higher than the supply.
 
 Read [docs/07-lab-safety.md](docs/07-lab-safety.md) before hardware work.
+
+
+## Captured full-system schematic
+
+The LTspice schematic is split across two screenshots for readability:
+
+- [Transmitter schematic](circuits/diagrams/transmitter-schematic.png)
+- [Receiver schematic](circuits/diagrams/receiver-schematic.png)
+
+The transmitter image contains the 12 V supply, NE555 oscillator, 2N3904
+inverter, LTC4444, IRFH5406 half bridge and transmitter resonator. The receiver
+image contains the 120 uH/20 nF resonator, Schottky bridge, rectified bus,
+LT1376-5 and load.
+
+These are images of the tested Draft1 schematic, not an editable LTspice file.
+The receiver capture shows the 5 ohm target-test load and ideal SHDN pulse used
+during simulation; it should not be mistaken for the accepted 20 ohm milestone
+or the proposed practical UVLO implementation.

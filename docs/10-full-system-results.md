@@ -112,3 +112,28 @@ The model demonstrates a plausible 1.25 W operating point under an assumed
 coupling coefficient of 0.20. It does not validate 5 W, a 10–20 cm distance,
 efficiency, thermal performance, EMC or phone charging. Physical work should
 start below 250 mA with measured coils and a current-limited supply.
+
+
+## 10.9 Captured transmitter and receiver schematics
+
+### Transmitter
+
+![LTspice transmitter schematic](../circuits/diagrams/transmitter-schematic.png)
+
+The transmitter screenshot shows the 12 V supply, NE555 timing network,
+complementary 2N3904 stage, one LTC4444, two IRFH5406 models and the
+30 uH/82 nF transmitter branch. The displayed transmitter series-resistance
+model is 0.15 ohm.
+
+### Receiver
+
+![LTspice receiver schematic](../circuits/diagrams/receiver-schematic.png)
+
+The receiver screenshot shows the 120 uH/20 nF receiver branch, assumed
+coupling coefficient of 0.20, four-diode rectifier, DTVS18 model, 1000 uF DC-link
+capacitor and LT1376-5 buck stage.
+
+The captured receiver load is 5 ohm and the SHDN input is driven by the ideal
+10 ms pulse source. Therefore this image documents the attempted 1 A target
+configuration. It does not represent the retained 20 ohm simulation milestone
+or the proposed resistor-based hardware UVLO.
