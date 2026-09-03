@@ -2,9 +2,9 @@
 
 The Stage 1 model uses only native SPICE elements and therefore requires no
 third-party model download. The current switching schematic uses LTspice-native
-NE555, 2N3904, LTC4444 and 1N5819 models. `LT1376-5` is the planned receiver
-regulator model. The two generic NMOS symbols must still be assigned real device
-models before simulation.
+NE555, 2N3904, LTC4444, 1N5819 and LT1376-5 models. Both half-bridge
+MOSFETs use the IRFH5406 model in the full-system simulation. This does not
+approve a physical package or guarantee thermal performance.
 
 Future switching-stage models should be downloaded from the component
 manufacturer. Record the source URL, document revision, download date, licence and

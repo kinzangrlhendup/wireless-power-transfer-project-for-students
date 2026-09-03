@@ -1,51 +1,55 @@
 # 6. Hardware development roadmap
 
-## 6.1 Proposed complete architecture
+## 6.1 Retained architecture
 
-1. A current-limited 12 V DC supply powers the transmitter.
-2. An oscillator provides an approximately 100 kHz command.
-3. A half-bridge gate driver controls two N-channel MOSFETs with dead time.
-4. The half bridge excites the series-compensated transmitter coil.
-5. The receiver coil and capacitor form the second resonator.
-6. A high-frequency Schottky bridge converts AC to DC.
-7. A filter capacitor and TVS limit receiver-bus disturbance.
-8. A buck converter regulates the output to 5.0 V.
-9. A USB charging-port controller may be needed for phone compatibility.
+The retained transmitter is a 12 V NE555/LTC4444 half bridge. One LTC4444 drives
+two MOSFETs. The receiver uses a tuned coil, full-wave Schottky bridge, bulk
+capacitor, LT1376-5 buck converter and voltage-controlled SHDN enable.
 
-## 6.2 Preliminary parts, not yet validated
+## 6.2 Current milestone
 
-The preliminary concept uses an NE555 oscillator, IRS2104 half-bridge driver,
-two IRLZ44N MOSFETs, polypropylene resonant capacitors, fast Schottky rectifiers
-and an LM2596-class buck stage. These parts are hypotheses for Stage 2 and Stage 3,
-not approved final selections.
+The present LTspice milestone is approximately 5 V at 250 mA into 20 ohm with
+`k = 0.20`. The original 5 V/1 A target was not achieved. There is no physical
+distance or hardware-power validation yet.
 
-Before hardware use, verify:
+## 6.3 Simulation parts versus hardware
 
-- gate-driver supply range and undervoltage lockout;
-- bootstrap component values and high-side duty-cycle limitations;
-- MOSFET voltage, current, switching loss and thermal margin;
-- resonant capacitor RMS current and peak voltage;
-- rectifier reverse voltage and loss;
-- buck converter input range at every coupling and load condition;
-- receiver overvoltage at no load;
-- USB charging-port signalling; and
-- electromagnetic and thermal behaviour.
-
-## 6.3 Planned simulations
-
-| Model | Purpose | Completion criterion |
+| Function | Simulation | Hardware decision |
 |---|---|---|
-| Stage 1 resonant link | Learn resonance and coupling | LTspice agrees with reference sweep |
-| Half bridge with resistive load | Validate gates and dead time | No cross-conduction; acceptable loss |
-| Half bridge plus resonant link | Assess coil current and voltage | Components remain within ratings |
-| Rectifier and capacitor | Check DC bus and diode stress | Stable bus over load/coupling range |
-| Buck and dummy load | Verify regulated output | 5.0 V within defined tolerance |
-| Fault cases | Open load, short, misalignment | Protected shutdown or safe current |
+| Oscillator | NE555 | Verify stability and tolerance |
+| Driver | LTC4444 | Retained; second driver not required |
+| MOSFETs | IRFH5406 models | Choose orderable package after loss analysis |
+| Rectifier | Four 1N5819 models | Choose lower-loss, adequately rated parts |
+| Regulator | LT1376-5 | Candidate; follow datasheet PCB layout |
+| TVS | Simplified DTVS18 | Select after measuring no-load VRECT |
+| Coils | TX 30 uH; RX 120 uH | Wind and measure before selecting capacitors |
 
-## 6.4 Test progression
+## 6.4 Practical SHDN circuit
 
-Begin with a low supply voltage and a strict current limit. Use a dummy load and
-oscilloscope before any phone connection. Increase input voltage in small steps,
-checking coil current, MOSFET temperature, resonant capacitor voltage and receiver
-bus voltage at each step.
+Replace the ideal pulse source with:
 
+- 20 kohm from VRECT to SHDN;
+- 10 kohm from SHDN to RX_NEG;
+- 68 kohm from +5V_OUT to SHDN;
+- 1 nF from SHDN to RX_NEG.
+
+The nominal thresholds are approximately 7.8 V turn-on and 6.4 V turn-off. Verify
+them using component tolerances, SHDN bias current and the actual receiver bus.
+
+## 6.5 Commissioning sequence
+
+1. Measure coil inductance and AC resistance.
+2. Recalculate both resonant capacitors.
+3. Test the oscillator and driver without the resonant load.
+4. Verify both gate-source waveforms and dead time.
+5. Start the half bridge at reduced voltage with a strict current limit.
+6. Measure switch-node voltage, coil current and resonant-capacitor voltage.
+7. Characterise VRECT before connecting the buck converter.
+8. Install the practical SHDN network and begin with a 50 ohm load.
+9. Progress to 33 ohm and 20 ohm only when voltage and temperature are safe.
+10. Measure input power, output power, efficiency and temperature.
+11. Test alignment and distance; do not equate `k` directly with distance.
+12. Keep phones disconnected until protection and USB behaviour are validated.
+
+Stop if the MOSFET gates overlap, VRECT exceeds a rating, the regulator chatters,
+or any component heats rapidly.

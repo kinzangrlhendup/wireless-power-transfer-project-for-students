@@ -2,15 +2,10 @@
 
 ## 9.1 Purpose and status
 
-This chapter records the circuit assembled interactively on 2 September 2026.
-The agreed method is to complete the schematic before running block tests. The
-circuit described here is therefore **under construction and not yet validated**.
-Values may change after the first controlled simulations.
-
-The engineering target is a regulated 5 V output at up to 1 A, initially at an
-approximately 10 cm coil gap. A 20 cm gap is a stretch goal. A phone must not be
-connected until the output has passed regulation, ripple, transient and thermal
-tests with a dummy load.
+This chapter records the circuit assembled and simulated on 2–3 September 2026.
+The original target was 5 V at 1 A. The retained full-system simulation currently
+supports approximately 5 V at 250 mA into 20 ohm with k = 0.20. This is not a
+hardware or physical-distance validation, and a phone remains disconnected.
 
 ## 9.2 System signal flow
 
@@ -110,8 +105,8 @@ Power MOSFET connections:
 | M1 high side | +12Vdc | SW | TG through 10 ohm; 10 kilohm gate-to-SW pull-down |
 | M2 low side | SW | Ground | BG through 10 ohm; 10 kilohm gate-to-ground pull-down |
 
-The generic `NMOS` symbols must be replaced with real models before simulation.
-The MOSFET voltage rating, gate charge, switching loss and thermal margin remain
+Both MOSFET symbols were assigned the LTspice IRFH5406 model. This is a
+simulation selection; hardware package, switching loss and thermal margin remain
 open design items.
 
 ## 9.7 Resonant transmitter and receiver
@@ -219,3 +214,21 @@ this order without connecting a phone:
 9. Verify 5.0 V regulation, input/output power, efficiency and device dissipation.
 
 The phone remains disconnected throughout these tests.
+
+
+## 9.12 Full-system result and final simulation decision
+
+The oscillator measured 102.151 kHz with approximately 0–12 V output. With the
+original receiver and `k = 0.10`, VRECT averaged only 2.557 V and U3 did not
+regulate. The retained case uses a 120 uH/20 nF receiver, `k = 0.20`, a 20 ohm
+load and delayed LT1376 startup. It produced approximately 5 V and 250 mA.
+
+The 5 ohm test did not maintain 5 V, so the 5 V/1 A objective is explicitly
+unmet. See [10-full-system-results.md](10-full-system-results.md).
+
+## 9.13 SHDN implementation decision
+
+The captured simulation used an ideal 0-to-5 V source delayed by 10 ms. It is not
+a hardware component. The proposed practical network is 20 kohm VRECT-to-SHDN,
+10 kohm SHDN-to-RX_NEG, 68 kohm +5V_OUT-to-SHDN and 1 nF
+SHDN-to-RX_NEG. Nominal thresholds are about 7.8 V on and 6.4 V off.
